@@ -1,70 +1,39 @@
 import os
-import importlib
+import re
 
 
 def md_template(tbl):
-    return(
-"""
-## Advent of Code
+    template_file = os.path.join(os.getcwd(),"templates","readme")
+    with open(template_file,"r") as f:
+        template = f.read()
+    return template.format(tbl=tbl)
 
-This is my work through the historic Advent of Code
-activities, tracking my progress here and including
-the python code used to solve the problems.
-
-In order to complete the Advent of Code, I have created
-an AoC Class and each solution is a subclass with
-certain attributes provided.
-
-My own data (supplied by Advent of Code) is included in
-each directory and each file can be run (provided that the
-AoCClass.py file is in the project root)
-
-## Progress
-"""
-    f"{tbl}"
-    )
-
-def getdir_prefix(path,pre):
-    return [cd for cd in os.listdir(path) if cd[0] == pre]
-
-def year_progress(year_dir):
-    D_dirs = getdir_prefix(year_dir,"D")
-
-    out = []
-
-    for d in D_dirs:
-        c_modname = year_dir + "." + d + ".solution"
-        c_mod = importlib.import_module(c_modname)
-        c_sol = c_mod.solution()
-        c_done = c_sol.complete
-        out.append({
-            "Year":int(year_dir[1:]),
-            "Day":int(d[1:]),
-            "Part1":c_done[0],
-            "Part2":c_done[1]
-        })
-
-    return out
-
-def print_progress_line(prg):
-    p1 = ":heavy_check_mark:" if prg['Part1'] else ""
-    p2 = ":heavy_check_mark:" if prg['Part2'] else ""
-    return f"|{prg['Year']}|{prg['Day']}|{p1}|{p2}|"
-
-def print_progress(prg):
-    prg_lines = [print_progress_line(x) for x in prg]
-    return "\n".join(["|Year|Day|Part 1|Part 2|"] +["|-|-|-|-|"] + prg_lines)
+def main():
+    daypattern = re.compile("^.\\\\Y[0-9]{4}\\\\D[0-9]{2}$")
+    prgpattern = re.compile("(?<=#' Part [12]: )(.*)")
 
 
-alldirs = os.listdir(".")
-Y_dirs = getdir_prefix(".","Y")
-prg = []
-for y in Y_dirs:
-    prg += year_progress(y)
+    daypaths = [path for path,_,_ in 
+                    os.walk(".") 
+                        if bool(daypattern.search(path))]
+    
+    tbl = "| Year | Day | Part 1 | Part 2 |"
+    tbl += "\n|-|-|-|-|"
+    for c_day in daypaths:
+        c_sol = c_day + "\\solution.py"
+        prglines = [prgpattern.findall(line)[0] for line in open(c_sol) if prgpattern.search(line)]
+        year = int(re.findall("(?<=^\.\\\\Y)([0-9]{4})",c_day)[0])
+        day = int(re.findall("(?<=\\\\D)([0-9]{2})",c_day)[0])
 
-tbl = print_progress(prg)
+        p1 = ":heavy_check_mark:" if prglines[0] == "Done" else " "
+        p2 = ":heavy_check_mark:" if prglines[1] == "Done" else " "
 
-out_txt = md_template(tbl)
 
-with open("README.md","w") as f:
-    f.write(out_txt)
+        tbl += f"\n|{year}|{day}|{p1}|{p2}|"
+
+    out_text = md_template(tbl)
+    with open("README.md","w") as f:
+        f.write(out_text)
+
+if(__name__ == "__main__"):
+    main()

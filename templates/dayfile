@@ -1,0 +1,14 @@
+
+#' Part 1: Not Done
+#' Part 2: Not Done
+
+import sys
+sys.path.insert(0,".")
+from AoCDecorator import AoC
+
+@AoC({year},{day})
+def solve(data,part):
+    pass
+
+if(__name__ == "__main__"):
+    solve()
