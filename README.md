@@ -17,6 +17,7 @@ AoCDecorator.py file is in the project root)
 | Year | Day | Part 1 | Part 2 |
 |-|-|-|-|
 |2020|1|:heavy_check_mark:|:heavy_check_mark:|
+|2020|2|:heavy_check_mark:|:heavy_check_mark:|
 |2021|1|:heavy_check_mark:|:heavy_check_mark:|
 |2021|2|:heavy_check_mark:|:heavy_check_mark:|
 |2021|3|:heavy_check_mark:|:heavy_check_mark:|

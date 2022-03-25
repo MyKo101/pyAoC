@@ -28,6 +28,7 @@ def main():
     pyfile_open = f"code {pyfile_name} -r"
     data_open = f"code {data_name} -r"
     data_browser = f"start https://adventofcode.com/{year}/day/{day}/input"
+    question_browser = f"start https://adventofcode.com/{year}/day/{day}"
 
     os.makedirs(dir_name)
 
@@ -39,6 +40,7 @@ def main():
     os.system(pyfile_open)
     os.system(data_open)
     os.system(data_browser)
+    os.system(question_browser)
 
     
     print("Please make sure you insert data into data file")
