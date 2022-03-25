@@ -18,4 +18,4 @@ AoCClass.py file is in the project root)
 |-|-|-|-|
 |2021|1|:heavy_check_mark:|:heavy_check_mark:|
 |2021|2|:heavy_check_mark:|:heavy_check_mark:|
-|2021|3|||
+|2021|3|:heavy_check_mark:|:heavy_check_mark:|
