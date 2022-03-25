@@ -39,8 +39,8 @@ def main():
 
     os.system(pyfile_open)
     os.system(data_open)
-    os.system(data_browser)
     os.system(question_browser)
+    os.system(data_browser)
 
     
     print("Please make sure you insert data into data file")

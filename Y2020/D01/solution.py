@@ -49,5 +49,5 @@ def solve(data,part):
 if(__name__ == '__main__'):
     solve()
 
-# Answer to Part 1: 381699
-# Answer to Part 2: 111605670
+# Answer 1: 381699
+# Answer 2: 111605670

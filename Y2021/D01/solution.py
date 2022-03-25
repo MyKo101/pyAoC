@@ -23,5 +23,5 @@ def solve(data,part):
 if(__name__ == "__main__"):
     solve()
 
-#Answer to Part 1: 1557
-#Answer to Part 2: 1608
+# Answer 1: 1557
+# Answer 2: 1608

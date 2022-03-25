@@ -12,9 +12,9 @@ def AoC(year,day):
             with open(data_file,"r") as f:
                 data_in = f.read().split("\n")
             ans1 = fun(data_in,1)
-            print(f"Answer 1: {ans1}")
+            print(f"# Answer 1: {ans1}")
             ans2 = fun(data_in,2)
-            print(f"Answer 2: {ans2}")
+            print(f"# Answer 2: {ans2}")
             return [ans1,ans2]
         
         return wrapper
