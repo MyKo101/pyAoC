@@ -32,37 +32,8 @@ class bingo:
          self.check()
          return self.winner
 
-    def strcell(self,i,j):        
-        num = f" {self.card[i,j]: >2}"
-
-        if self.matches[i,j]:
-            out = " \u0336" + num[1] + "\u0336" + num[2]
-        else:
-            out = num
-
-        return out
-
-    def __repr__(self,):
-        if self.check():
-            out = "\nWe have a winner!\n"
-        else:
-            out = "\nStill playing...\n"
-        return str(self)
-
-    def __str__(self):
-        return "\n".join(self.fmt())
-    
     def score(self):
         return self.last*sum(self.card[np.logical_not(self.matches)])
-    
-    def fmt(self):
-        out = []
-        for i in range(0,5):
-            out2 = ""
-            for j in range(0,5):
-                out2 += self.strcell(i,j)
-            out += [out2]
-        return out
 
 class bingogame:
     def __init__(self,rows):
@@ -111,17 +82,7 @@ class bingogame:
             i +=1
             
         return self.score(part)
-        
-    
-    def __repr__(self):
-        return str(self)
-    
-    def __str__(self):
-        out = []
-        for i in range(0,self.len):
-            out += [str(self.cards[i])]       
 
-        return "\n\n".join(out)
 
 
 @AoC(2021,4)
@@ -131,3 +92,6 @@ def solve(data,part):
     
 if(__name__ == "__main__"):
     solve()
+
+# Answer 1: 35711
+# Answer 2: 5586
