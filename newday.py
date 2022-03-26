@@ -1,6 +1,7 @@
 
 import sys
 import os
+import re
 
 
 def getdir(year,day,*args):
@@ -13,10 +14,7 @@ def pytemplate(year,day):
 
     return template.format(year=year,day=day)
 
-def main():
-    year = int(sys.argv[1])
-    day = int(sys.argv[2])
-
+def newday(year,day):
     dir_name = getdir(year,day)
 
     if os.path.isdir(dir_name):
@@ -45,6 +43,25 @@ def main():
     
     print("Please make sure you insert data into data file")
 
+def nextday(year):
+    daypattern = re.compile(f"(?<=^.\\\\Y{year}\\\\D)([0-9]{{2}})$")
+
+    daysdone = [int(daypattern.findall(path)[0]) 
+                    for path,_,_ in os.walk(".") 
+                        if bool(daypattern.search(path))]
+    
+    next = max(daysdone)+1 if len(daysdone) else 1
+   
+    newday(year,next)
+    
+
+def main():
+    if len(sys.argv) == 2:
+        nextday(int(sys.argv[1]))
+    elif len(sys.argv) == 3:
+        newday(int(sys.argv[1]),int(sys.argv[2]))
+    else:
+        print("Incorrect Number of Arguments")
 
 
 if(__name__ == "__main__"):

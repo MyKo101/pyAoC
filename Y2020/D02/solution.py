@@ -16,12 +16,12 @@ def row_to_dict(x):
         "password": x[3]
     }
 
-def checkrow1(x):
-    count = int(x["password"].count(x["letter"]))
-    return x["min"] <= count <= x["max"]
+def checkrow1(min,max,letter,password):
+    count = int(password.count(letter))
+    return min <=count <= max
 
-def checkrow2(x):
-    return (x["password"][x["min"]-1] == x["letter"]) != (x["password"][x["max"]-1] == x["letter"])
+def checkrow2(min,max,letter,password):
+    return password[min-1] == letter != password[max-1] == letter 
 
 @AoC(2020,2)
 def solve(data,part):
@@ -29,9 +29,9 @@ def solve(data,part):
     data2 = [list(pattern.findall(x)[0]) for x in data]
     data3 = [row_to_dict(x) for x in data2]
     if part == 1:
-        correct = [checkrow1(x) for x in data3]
+        correct = [checkrow1(**x) for x in data3]
     if part == 2:
-        correct = [checkrow2(x) for x in data3]
+        correct = [checkrow2(**x) for x in data3]
 
     return sum(correct)
 
