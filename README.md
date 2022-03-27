@@ -24,3 +24,4 @@ AoCDecorator.py file is in the project root)
 |2021|3|:heavy_check_mark:|:heavy_check_mark:|
 |2021|4|:heavy_check_mark:|:heavy_check_mark:|
 |2021|5|:heavy_check_mark:|:heavy_check_mark:|
+|2021|6|:heavy_check_mark:|:heavy_check_mark:|

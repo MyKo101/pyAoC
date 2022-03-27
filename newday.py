@@ -40,7 +40,7 @@ def newday(year,day):
     os.system(question_browser)
     os.system(data_browser)
 
-    
+    print(f"Files setup for Year {year} Day {day}")
     print("Please make sure you insert data into data file")
 
 def nextday(year):

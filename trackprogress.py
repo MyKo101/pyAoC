@@ -25,9 +25,15 @@ def main():
         year = int(re.findall("(?<=^\.\\\\Y)([0-9]{4})",c_day)[0])
         day = int(re.findall("(?<=\\\\D)([0-9]{2})",c_day)[0])
 
-        p1 = ":heavy_check_mark:" if prglines[0] == "Done" else " "
-        p2 = ":heavy_check_mark:" if prglines[1] == "Done" else " "
+        if prglines[0] == "Done":
+            p1 = ":heavy_check_mark:"
+        else:
+            print(f"Year {year} Day {day} started, Part 1 Not Done")
 
+        if prglines[1] == "Done":
+            p2 = ":heavy_check_mark:"
+        else:
+            print(f"Year {year} Day {day} started, Part 2 Not Done")
 
         tbl += f"\n|{year}|{day}|{p1}|{p2}|"
 
