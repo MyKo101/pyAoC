@@ -14,11 +14,11 @@ each directory and each file can be run (provided that the
 AoCDecorator.py file is in the project root)
 
 ## Progress
-|   day | 2020    | 2021    |
-|-------|---------|---------|
-|     1 | [x] [x] | [x] [x] |
-|     2 | [ ] [ ] | [x] [x] |
-|     3 | [ ] [ ] | [x] [ ] |
-|     4 |         | [x] [x] |
-|     5 |         | [x] [x] |
-|     6 |         | [ ] [x] |
+|   day | 2020                        | 2021                        |
+|-------|-----------------------------|-----------------------------|
+|     1 | <ul><li> [x] [x] </li></ul> | <ul><li> [x] [x] </li></ul> |
+|     2 | <ul><li> [ ] [ ] </li></ul> | <ul><li> [x] [x] </li></ul> |
+|     3 | <ul><li> [ ] [ ] </li></ul> | <ul><li> [x] [ ] </li></ul> |
+|     4 |                             | <ul><li> [x] [x] </li></ul> |
+|     5 |                             | <ul><li> [x] [x] </li></ul> |
+|     6 |                             | <ul><li> [ ] [x] </li></ul> |
