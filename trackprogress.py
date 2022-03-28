@@ -10,8 +10,8 @@ def md_template(tbl):
     return template.format(tbl=tbl)
 
 def checkbox(x):
-    true_out = "&#x2611;"
-    false_out = "&#x2610;"
+    true_out = ":negative_squared_cross_mark:"
+    false_out = ":negative_squared_cross_mark:"
     return [true_out if i else false_out for i in x]
 
 def get_progress(year,day,pt):
