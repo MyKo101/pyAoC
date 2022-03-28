@@ -22,3 +22,4 @@ AoCDecorator.py file is in the project root)
 |     4 |                                       | :white_check_mark: :white_check_mark: |
 |     5 |                                       | :white_check_mark: :white_check_mark: |
 |     6 |                                       | :white_check_mark: :white_check_mark: |
+|     7 |                                       | :white_check_mark: :white_check_mark: |

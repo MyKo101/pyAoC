@@ -1,7 +1,4 @@
 
-#' Part 1: Not Done
-#' Part 2: Not Done
-
 import sys
 sys.path.insert(0,".")
 from AoCDecorator import AoC
