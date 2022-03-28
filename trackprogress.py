@@ -10,7 +10,7 @@ def md_template(tbl):
     return template.format(tbl=tbl)
 
 def checkbox(x):
-    true_out = ":negative_squared_cross_mark:"
+    true_out = ":white_check_mark:"
     false_out = ":negative_squared_cross_mark:"
     return [true_out if i else false_out for i in x]
 
