@@ -9,14 +9,16 @@ def md_template(tbl):
         template = f.read()
     return template.format(tbl=tbl)
 
+def checkbox(x):
+    true_out = "&#x2611;"
+    false_out = "&#x2610;"
+    return [true_out if i else false_out for i in x]
 
 def get_progress(year,day,pt):
     sol_file = f"Y{year}\\D{day:02}\\solution.py"
     prglines = [pt.findall(line)[0] for line in open(sol_file) if pt.search(line)]
     prg_bool = ['1' in prglines,'2' in prglines]
-    cb = " ".join(["<ul><li>[x]</li></ul>" \
-                    if x else "<ul><li>[ ]</li></ul>" for x in prg_bool])
-    return cb
+    return " ".join(checkbox(prg_bool))
      
 
 def get_paths(pt):
