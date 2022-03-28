@@ -36,3 +36,6 @@ def solve(data,part):
 
 if(__name__ == "__main__"):
     solve()
+
+# Answer 1: 198
+# Answer 2: 5140884672

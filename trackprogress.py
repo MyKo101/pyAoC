@@ -14,10 +14,17 @@ def checkbox(x):
     false_out = ":negative_squared_cross_mark:"
     return [true_out if i else false_out for i in x]
 
+def print_progress(year,day,prg_bool):
+    if not prg_bool[0]:
+        print(f"Year {year} Day {day} Part 1 not finished")
+    if not prg_bool[1]:
+        print(f"Year {year} Day {day} Part 2 not finished")
+
 def get_progress(year,day,pt):
     sol_file = f"Y{year}\\D{day:02}\\solution.py"
     prglines = [pt.findall(line)[0] for line in open(sol_file) if pt.search(line)]
     prg_bool = ['1' in prglines,'2' in prglines]
+    print_progress(year,day,prg_bool)
     return " ".join(checkbox(prg_bool))
      
 

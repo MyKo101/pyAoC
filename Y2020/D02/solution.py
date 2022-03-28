@@ -18,7 +18,7 @@ def checkrow1(min,max,letter,password):
     return min <=count <= max
 
 def checkrow2(min,max,letter,password):
-    return password[min-1] == letter != password[max-1] == letter 
+    return (password[min-1] == letter) != (password[max-1] == letter)
 
 @AoC(2020,2)
 def solve(data,part):
@@ -35,5 +35,5 @@ def solve(data,part):
 if(__name__ == "__main__"):
     solve()
 
-#Answer 1: 622
-#Answer 2: 263
+# Answer 1: 622
+# Answer 2: 263
