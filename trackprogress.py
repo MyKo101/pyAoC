@@ -14,8 +14,9 @@ def get_progress(year,day,pt):
     sol_file = f"Y{year}\\D{day:02}\\solution.py"
     prglines = [pt.findall(line)[0] for line in open(sol_file) if pt.search(line)]
     prg_bool = ['1' in prglines,'2' in prglines]
-    cb = " ".join(["[x]" if x else "[ ]" for x in prg_bool])
-    return f"<ul><li> {cb} </li></ul>"
+    cb = " ".join(["<ul><li>[x]</li></ul>" \
+                    if x else "<ul><li>[ ]</li></ul>" for x in prg_bool])
+    return cb
      
 
 def get_paths(pt):
