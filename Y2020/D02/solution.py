@@ -1,7 +1,4 @@
 
-#' Part 1: Done
-#' Part 2: Done
-
 import re
 
 import sys

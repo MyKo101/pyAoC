@@ -1,5 +1,6 @@
 import os
 import re
+import pandas as pd
 
 
 def md_template(tbl):
@@ -8,36 +9,49 @@ def md_template(tbl):
         template = f.read()
     return template.format(tbl=tbl)
 
-def main():
-    daypattern = re.compile("^.\\\\Y[0-9]{4}\\\\D[0-9]{2}$")
-    prgpattern = re.compile("(?<=#' Part [12]: )(.*)")
 
+def get_progress(year,day,pt):
+    sol_file = f"Y{year}\\D{day:02}\\solution.py"
+    prglines = [pt.findall(line)[0] for line in open(sol_file) if pt.search(line)]
+    prg_bool = ['1' in prglines,'2' in prglines]
+    return " ".join(["[x]" if x else "[ ]" for x in prg_bool])
+     
 
-    daypaths = [path for path,_,_ in 
-                    os.walk(".") 
-                        if bool(daypattern.search(path))]
+def get_paths(pt):
+    return [path for path,_,_ in os.walk(".") if bool(pt.search(path))]
+
+def pull_pattern(x,pt,conv=None):
+    if conv is None:
+        return [pt.findall(y)[0] for y in x]        
+    return [conv(pt.findall(y)[0]) for y in x]
+
+def progress_table():
     
-    tbl = "| Year | Day | Part 1 | Part 2 |"
-    tbl += "\n|-|-|-|-|"
-    for c_day in daypaths:
-        c_sol = c_day + "\\solution.py"
-        prglines = [prgpattern.findall(line)[0] for line in open(c_sol) if prgpattern.search(line)]
-        year = int(re.findall("(?<=^\.\\\\Y)([0-9]{4})",c_day)[0])
-        day = int(re.findall("(?<=\\\\D)([0-9]{2})",c_day)[0])
+    filepattern = re.compile("^.\\\\Y[0-9]{4}\\\\D[0-9]{2}$")
+    yearpattern = re.compile("(?<=\\\\Y)([0-9]{4})")
+    daypattern = re.compile("(?<=\\\\D)([0-9]{2})")
+    prgpattern = re.compile("(?<=# Answer )([12])")
 
-        if prglines[0] == "Done":
-            p1 = ":heavy_check_mark:"
-        else:
-            print(f"Year {year} Day {day} started, Part 1 Not Done")
+    daypaths = get_paths(filepattern)
 
-        if prglines[1] == "Done":
-            p2 = ":heavy_check_mark:"
-        else:
-            print(f"Year {year} Day {day} started, Part 2 Not Done")
+    years = pull_pattern(daypaths,yearpattern,int)
+    days = pull_pattern(daypaths,daypattern,int)
+    parts = [get_progress(i,j,prgpattern) for i,j in zip(years,days)]
 
-        tbl += f"\n|{year}|{day}|{p1}|{p2}|"
+    prg_df = pd.DataFrame(data={
+        "year":years,
+        "day":days,
+        "part":parts
+    })
 
-    out_text = md_template(tbl)
+    prg_df_pivot = prg_df \
+        .pivot_table(index="day",columns="year",values="part", \
+            fill_value="",aggfunc=lambda x: x)
+
+    return prg_df_pivot.to_markdown(tablefmt="github")
+
+def main():
+    out_text = md_template(tbl = progress_table())
     with open("README.md","w") as f:
         f.write(out_text)
 

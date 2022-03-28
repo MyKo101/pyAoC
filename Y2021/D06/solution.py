@@ -1,7 +1,4 @@
 
-#' Part 1: Done
-#' Part 2: Done
-
 import sys
 sys.path.insert(0,".")
 from AoCDecorator import AoC
@@ -37,3 +34,6 @@ def solve(data,part):
 
 if(__name__ == "__main__"):
     solve()
+
+
+# Answer 2: 1572643095893
