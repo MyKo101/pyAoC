@@ -1,3 +1,5 @@
+#!/usr/bin/env pipenv-shebang
+
 import os
 import re
 import pandas as pd
@@ -25,7 +27,7 @@ def get_progress(year,day,pt):
     prglines = [pt.findall(line)[0] for line in open(sol_file) if pt.search(line)]
     prg_bool = ['1' in prglines,'2' in prglines]
     print_progress(year,day,prg_bool)
-    return " ".join(checkbox(prg_bool))
+    return "".join(checkbox(prg_bool))
      
 
 def get_paths(pt):
